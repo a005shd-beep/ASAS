@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ورشة عمل — شركة أساس للتقنية</title>
+<meta name="description" content="ورشة عمل من شركة أساس للتقنية: كيف تستفيد من الجامعة وتبني نفسك في المجال التقني؟">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root{
+  --white:#FFFFFF;
+  --bg-soft:#FAFAF8;
+  --ink:#151515;
+  --ink-soft:#5B5D63;
+  --ink-faint:#9A9CA3;
+  --yellow:#FFC800;
+  --yellow-deep:#E0AC00;
+  --yellow-tint:#FFF6D9;
+  --black-panel:#161616;
+  --border:#ECECE9;
+  --border-strong:#1E1E1E;
+  --danger:#D64545;
+  --danger-tint:#FBEAEA;
+  --success:#1E8A4C;
+
+  --font-display:'Cairo', 'IBM Plex Sans Arabic', sans-serif;
+  --font-body:'IBM Plex Sans Arabic', 'Cairo', sans-serif;
+
+  --radius-s:10px;
+  --radius-m:16px;
+  --radius-l:24px;
+  --shadow-soft:0 8px 24px rgba(20,20,20,0.06);
+  --shadow-card:0 2px 10px rgba(20,20,20,0.05);
+  --content-max:460px;
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  font-family:var(--font-body);
+  background:var(--white);
+  color:var(--ink);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+}
+
+img,svg{display:block; max-width:100%;}
+button{font-family:inherit; cursor:pointer;}
+a{color:inherit; text-decoration:none;}
+input,select,textarea{font-family:inherit; font-size:16px;}
+
+.shell{
+  max-width:var(--content-max);
+  margin:0 auto;
+  background:var(--white);
+  min-height:100vh;
+  position:relative;
+  box-shadow:0 0 60px rgba(0,0,0,0.05);
+}
+
+.wrap{padding-inline:20px;}
+
+/* Focus visibility */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, label:focus-within{
+  outline:2.5px solid var(--yellow-deep);
+  outline-offset:2px;
+  border-radius:6px;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position:sticky; top:0; z-index:50;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.header-inner{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 20px;
+  gap:10px;
+}
+.brand{display:flex; align-items:center; gap:10px; min-width:0;}
+.brand-logo{
+  width:38px; height:38px; border-radius:10px;
+  background:var(--ink);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+  overflow:hidden;
+}
+.brand-logo img{width:100%; height:100%; object-fit:cover;}
+.brand-logo .logo-fallback{color:var(--yellow); font-family:var(--font-display); font-weight:900; font-size:16px;}
+.brand-text{display:flex; flex-direction:column; min-width:0;}
+.brand-name-ar{font-family:var(--font-display); font-weight:800; font-size:14.5px; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.brand-name-en{font-size:9.5px; letter-spacing:.14em; color:var(--ink-faint); font-weight:600; white-space:nowrap;}
+
+.header-actions{display:flex; align-items:center; gap:8px; flex-shrink:0;}
+.icon-btn{
+  width:38px; height:38px; border-radius:50%;
+  border:1px solid var(--border);
+  background:var(--white);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+}
+.icon-btn svg{width:18px; height:18px; stroke:var(--ink);}
+
+.btn-cta-sm{
+  background:var(--ink); color:var(--white);
+  font-weight:700; font-size:13.5px;
+  padding:10px 16px; border-radius:100px; border:none;
+  white-space:nowrap;
+  display:flex; align-items:center; gap:6px;
+}
+.btn-cta-sm svg{width:14px; height:14px; stroke:var(--yellow); flex-shrink:0;}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  padding:38px 20px 34px;
+  background:
+    radial-gradient(120% 90% at 100% -10%, var(--yellow-tint) 0%, rgba(255,246,217,0) 60%),
+    var(--white);
+  overflow:hidden;
+}
+.hero-eyebrow{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:12px; font-weight:700; color:var(--ink);
+  background:var(--yellow); padding:6px 12px; border-radius:100px;
+  margin-bottom:18px;
+}
+.hero-eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--ink);}
+
+.hero-title{
+  font-family:var(--font-display);
+  font-weight:900;
+  font-size:clamp(26px, 8vw, 32px);
+  line-height:1.32;
+  color:var(--ink);
+  margin-bottom:16px;
+}
+.hero-title .hl{
+  background:linear-gradient(transparent 62%, var(--yellow) 62%);
+}
+
+.hero-desc{
+  font-size:15px; color:var(--ink-soft); line-height:1.85;
+  margin-bottom:26px;
+  max-width:40ch;
+}
+
+.hero-ctas{display:flex; flex-direction:column; gap:10px; margin-bottom:30px;}
+.btn-primary{
+  background:var(--ink); color:var(--white);
+  font-weight:700; font-size:15.5px;
+  padding:16px 20px; border-radius:14px; border:none;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  width:100%;
+  transition:transform .15s ease;
+}
+.btn-primary svg{width:18px; height:18px; stroke:var(--yellow);}
+.btn-primary:active{transform:scale(0.98);}
+
+.hero-visual{position:relative; height:150px; margin-top:6px;}
+.hero-visual svg{width:100%; height:100%;}
+
+/* ============================================================
+   SECTION SCAFFOLDING
+   ============================================================ */
+.section{padding:44px 20px;}
+.section-soft{background:var(--bg-soft);}
+.section-dark{background:var(--black-panel); color:var(--white);}
+
+.eyebrow-label{
+  font-size:11.5px; font-weight:700; color:var(--yellow-deep);
+  letter-spacing:.08em; text-transform:uppercase;
+  display:flex; align-items:center; gap:8px; margin-bottom:10px;
+}
+.eyebrow-label::before{content:''; width:16px; height:2px; background:var(--yellow-deep); display:block;}
+.section-dark .eyebrow-label{color:var(--yellow);}
+.section-dark .eyebrow-label::before{background:var(--yellow);}
+
+.section-title{
+  font-family:var(--font-display); font-weight:800;
+  font-size:23px; line-height:1.4; color:var(--ink);
+  margin-bottom:12px;
+}
+.section-dark .section-title{color:var(--white);}
+.section-lead{font-size:14.5px; color:var(--ink-soft); line-height:1.8; margin-bottom:26px;}
+.section-dark .section-lead{color:#C9C9C9;}
+
+/* ============================================================
+   WORKSHOP INFO CARDS
+   ============================================================ */
+.info-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+.info-card{
+  background:var(--white); border:1px solid var(--border); border-radius:var(--radius-m);
+  padding:16px 14px; box-shadow:var(--shadow-card);
+}
+.info-card .info-icon{
+  width:34px; height:34px; border-radius:10px; background:var(--yellow-tint);
+  display:flex; align-items:center; justify-content:center; margin-bottom:10px;
+}
+.info-card .info-icon svg{width:17px; height:17px; stroke:var(--ink);}
+.info-card .info-label{font-size:11.5px; color:var(--ink-faint); font-weight:600; margin-bottom:3px;}
+.info-card .info-value{font-size:14.5px; font-weight:700; color:var(--ink);}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+.about-list{display:flex; flex-direction:column; gap:14px;}
+.about-item{
+  background:var(--white); border:1px solid var(--border);
+  border-radius:var(--radius-m); padding:18px;
+  position:relative; padding-inline-start:22px;
+  box-shadow:var(--shadow-card);
+}
+.about-item::before{
+  content:''; position:absolute; inset-inline-start:0; top:18px; bottom:18px;
+  width:3px; background:var(--yellow); border-radius:4px;
+}
+.about-item h3{font-family:var(--font-display); font-size:15.5px; font-weight:800; margin-bottom:6px; color:var(--ink);}
+.about-item p{font-size:14px; color:var(--ink-soft); line-height:1.8;}
+
+.pillars{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px;}
+.pillar-chip{
+  font-size:12.5px; font-weight:600; color:var(--ink);
+  background:var(--yellow-tint); border:1px solid var(--yellow);
+  padding:7px 12px; border-radius:100px;
+}
+
+/* ============================================================
+   GOALS (with connecting path signature)
+   ============================================================ */
+.goals-path{position:relative;}
+.goal-row{
+  display:flex; gap:14px; position:relative; padding-bottom:26px;
+}
+.goal-row:last-child{padding-bottom:0;}
+.goal-row:last-child .goal-connector{display:none;}
+.goal-marker{
+  flex-shrink:0; width:42px; height:42px; border-radius:50%;
+  background:var(--ink); display:flex; align-items:center; justify-content:center;
+  position:relative; z-index:2;
+}
+.goal-marker svg{width:19px; height:19px; stroke:var(--yellow);}
+.goal-connector{
+  position:absolute; inset-inline-start:20px; top:42px; bottom:-26px;
+  width:2px;
+  background-image:linear-gradient(var(--border-strong) 55%, rgba(0,0,0,0) 0%);
+  background-size:2px 8px; background-repeat:repeat-y;
+  opacity:.35;
+}
+.goal-content{padding-top:6px;}
+.goal-content h3{font-family:var(--font-display); font-size:15px; font-weight:800; color:var(--ink); margin-bottom:4px;}
+.goal-content p{font-size:13.5px; color:var(--ink-soft); line-height:1.7;}
+
+/* ============================================================
+   REGISTRATION
+   ============================================================ */
+.reg-progress{display:flex; gap:6px; margin-bottom:24px;}
+.reg-progress .seg{flex:1; height:4px; border-radius:4px; background:var(--border);}
+.reg-progress .seg.active{background:var(--yellow-deep);}
+
+.form-section{
+  background:var(--white); border:1px solid var(--border); border-radius:var(--radius-l);
+  padding:20px 18px; margin-bottom:16px; box-shadow:var(--shadow-card);
+}
+.form-section-head{display:flex; align-items:center; gap:10px; margin-bottom:16px;}
+.form-section-num{
+  width:26px; height:26px; border-radius:8px; background:var(--ink); color:var(--yellow);
+  font-family:var(--font-display); font-weight:800; font-size:12.5px;
+  display:flex; align-items:center; justify-content:center; flex-shrink:0;
+}
+.form-section-head h3{font-family:var(--font-display); font-weight:800; font-size:15.5px; color:var(--ink);}
+.form-section-head .opt-tag{
+  font-size:10.5px; font-weight:700; color:var(--ink-faint); background:var(--bg-soft);
+  border:1px solid var(--border); padding:3px 8px; border-radius:100px; margin-inline-start:auto;
+}
+
+.field{margin-bottom:16px;}
+.field:last-child{margin-bottom:0;}
+.field label{display:block; font-size:13.5px; font-weight:700; color:var(--ink); margin-bottom:7px;}
+.field .req{color:var(--danger); margin-inline-start:2px;}
+.field .hint{font-size:11.5px; color:var(--ink-faint); margin-top:5px;}
+
+.input-wrap{position:relative;}
+.input-wrap svg.input-icon{
+  position:absolute; inset-inline-start:14px; top:50%; transform:translateY(-50%);
+  width:16px; height:16px; stroke:var(--ink-faint); pointer-events:none;
+}
+.field input[type=text], .field input[type=email], .field input[type=tel], .field select{
+  width:100%; padding:13px 14px; padding-inline-start:40px;
+  border:1.5px solid var(--border); border-radius:12px;
+  background:var(--bg-soft); color:var(--ink);
+  transition:border-color .15s ease, background .15s ease;
+  appearance:none;
+}
+.field select{padding-inline-start:14px; padding-inline-end:38px;}
+.select-wrap{position:relative;}
+.select-wrap svg.chevron{
+  position:absolute; inset-inline-end:14px; top:50%; transform:translateY(-50%);
+  width:15px; height:15px; stroke:var(--ink-faint); pointer-events:none;
+}
+.field input:focus, .field select:focus{
+  border-color:var(--yellow-deep); background:var(--white); outline:none;
+}
+.field input.invalid, .field select.invalid{border-color:var(--danger); background:var(--danger-tint);}
+.field-error{display:none; align-items:center; gap:5px; font-size:12px; color:var(--danger); margin-top:6px; font-weight:600;}
+.field-error.show{display:flex;}
+.field-error svg{width:13px; height:13px; stroke:var(--danger); flex-shrink:0;}
+
+.check-grid{display:flex; flex-direction:column; gap:8px;}
+.check-item{
+  display:flex; align-items:center; gap:10px;
+  border:1.5px solid var(--border); border-radius:12px; padding:12px 14px;
+  background:var(--bg-soft); transition:border-color .15s ease, background .15s ease;
+}
+.check-item.checked{border-color:var(--yellow-deep); background:var(--yellow-tint);}
+.check-item input{width:19px; height:19px; accent-color:var(--ink); flex-shrink:0;}
+.check-item label{margin:0; font-size:13.5px; font-weight:600; color:var(--ink); flex:1; cursor:pointer;}
+.check-item.none-option{border-style:dashed;}
+
+/* ============================================================
+   SUBMIT / STATES
+   ============================================================ */
+.submit-zone{margin-top:6px;}
+.btn-submit{
+  width:100%; background:var(--yellow); color:var(--ink);
+  font-weight:800; font-size:15.5px; padding:17px 20px; border-radius:14px; border:none;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  transition:transform .15s ease, opacity .15s ease;
+}
+.btn-submit:active{transform:scale(0.98);}
+.btn-submit:disabled{opacity:.65; cursor:not-allowed;}
+.btn-submit svg{width:18px; height:18px; stroke:var(--ink);}
+.spinner{
+  width:18px; height:18px; border-radius:50%;
+  border:2.5px solid rgba(21,21,21,0.25); border-top-color:var(--ink);
+  animation:spin .7s linear infinite; display:none;
+}
+.btn-submit.loading .spinner{display:block;}
+.btn-submit.loading .btn-submit-icon{display:none;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+.form-alert{
+  display:none; align-items:flex-start; gap:10px;
+  background:var(--danger-tint); border:1px solid #F0C4C4; border-radius:12px;
+  padding:13px 14px; margin-bottom:16px; font-size:13px; color:#8C2626; font-weight:600; line-height:1.6;
+}
+.form-alert.show{display:flex;}
+.form-alert svg{width:16px; height:16px; stroke:#8C2626; flex-shrink:0; margin-top:2px;}
+
+#registrationForm.hidden, #successState.hidden{display:none;}
+
+.success-wrap{text-align:center; padding:26px 8px 8px;}
+.success-icon{
+  width:78px; height:78px; border-radius:50%; background:var(--ink);
+  display:flex; align-items:center; justify-content:center; margin:0 auto 22px;
+}
+.success-icon svg{width:36px; height:36px; stroke:var(--yellow);}
+.success-wrap h3{font-family:var(--font-display); font-weight:800; font-size:20px; margin-bottom:10px; color:var(--ink);}
+.success-wrap p{font-size:14px; color:var(--ink-soft); line-height:1.8; margin-bottom:6px;}
+.success-wrap .success-sub{color:var(--ink-faint); font-size:13px; margin-bottom:26px;}
+.btn-ghost{
+  display:inline-flex; align-items:center; gap:8px;
+  background:transparent; border:1.5px solid var(--ink); color:var(--ink);
+  font-weight:700; font-size:14px; padding:13px 22px; border-radius:100px;
+}
+.btn-ghost svg{width:15px; height:15px; stroke:var(--ink);}
+
+/* ============================================================
+   FOOTER (CENTER ALIGNED)
+   ============================================================ */
+.site-footer{background:var(--black-panel); color:var(--white); padding:34px 20px 24px; text-align:center;}
+.footer-brand{display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:18px;}
+.footer-brand .brand-logo{background:var(--yellow);}
+.footer-brand .logo-fallback{color:var(--ink);}
+.footer-name-ar{font-family:var(--font-display); font-weight:800; font-size:15px;}
+.footer-name-en{font-size:10px; letter-spacing:.14em; color:#9A9A9A; font-weight:600;}
+.footer-links{display:flex; flex-direction:column; align-items:center; gap:10px; margin-bottom:22px;}
+.footer-link{
+  display:inline-flex; align-items:center; justify-content:center; gap:10px; font-size:13.5px; color:#D8D8D8; font-weight:600;
+  padding:12px 14px; background:rgba(255,255,255,0.06); border-radius:12px; width:100%; max-width:280px;
+}
+.footer-link svg{width:16px; height:16px; stroke:var(--yellow); flex-shrink:0;}
+.footer-divider{height:1px; background:rgba(255,255,255,0.1); margin:20px 0;}
+.footer-bottom{display:flex; flex-direction:column; align-items:center; gap:4px; font-size:11.5px; color:#8C8C8C;}
+.footer-bottom .by-line{color:var(--yellow); font-weight:800; letter-spacing:.04em;}
+
+/* Skip link for accessibility */
+.skip-link{
+  position:absolute; right:12px; top:-60px; background:var(--yellow); color:var(--ink);
+  padding:10px 16px; border-radius:10px; font-weight:700; font-size:13px; z-index:100;
+  transition:top .15s ease;
+}
+.skip-link:focus{top:12px;}
+
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden;
+  clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+</style>
+</head>
+<body>
+
+
+<a href="#registration-section" class="skip-link">تخطَّ إلى نموذج التسجيل</a>
+
+<div class="shell">
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-logo" id="logoSlot" aria-hidden="true">
+          <img src="logo.jpg" alt="شعار أساس للتقنية">
+        </span>
+        <span class="brand-text">
+          <span class="brand-name-ar">أساس للتقنية</span>
+          <span class="brand-name-en">ASAS TECHNOLOGY</span>
+        </span>
+      </div>
+      <div class="header-actions">
+        <a id="mapsBtnHeader" href="https://maps.app.goo.gl/xGmfpKbavvLKMVYM7?g_st=ic" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="موقع الشركة على الخريطة" title="موقع الشركة">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11.3A7 7 0 0 1 19 9.7C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
+        </a>
+        <a href="#registration-section" class="btn-cta-sm js-scroll-register">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          سجل الآن
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <span class="hero-eyebrow"><span class="dot"></span>ورشة عمل مجانية · أساس للتقنية</span>
+      <h1 class="hero-title">كيف تستفيد من الجامعة <span class="hl">وتبني نفسك</span> في المجال التقني؟</h1>
+      <p class="hero-desc">
+        ورشة عمل تساعدك على استغلال سنوات دراستك الجامعية بالشكل الصحيح، والتعرف على أبرز المجالات والمسارات التقنية، لتبني رؤية أوضح لمستقبلك المهني وتستعد بثقة أكبر لسوق العمل.
+      </p>
+      <div class="hero-ctas">
+        <a href="#registration-section" class="btn-primary js-scroll-register">
+          سجل الآن
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 400 150" fill="none">
+          <rect x="18" y="70" width="60" height="60" rx="14" fill="#FFC800" opacity="0.9" transform="rotate(-8 48 100)"/>
+          <rect x="150" y="40" width="70" height="70" rx="16" fill="none" stroke="#151515" stroke-width="2" transform="rotate(6 185 75)"/>
+          <circle cx="320" cy="85" r="34" fill="none" stroke="#FFC800" stroke-width="2"/>
+          <path d="M96 100 L138 78" stroke="#151515" stroke-width="1.6" stroke-dasharray="4 5"/>
+          <path d="M228 75 L282 82" stroke="#151515" stroke-width="1.6" stroke-dasharray="4 5"/>
+          <path d="M312 60 L322 45" stroke="#151515" stroke-width="2" stroke-linecap="round"/>
+          <path d="M308 52 L322 45 L322 60" fill="none" stroke="#151515" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ================= WORKSHOP INFO (data-driven, hidden if not configured) ================= -->
+    <section class="section" id="workshopInfoSection" style="display:none;">
+      <span class="eyebrow-label">تفاصيل سريعة</span>
+      <h2 class="section-title">معلومات الورشة</h2>
+      <div class="info-grid" id="workshopInfoGrid"></div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="section section-soft">
+      <span class="eyebrow-label">عن الورشة</span>
+      <h2 class="section-title">لماذا هذه الورشة؟</h2>
+      <div class="about-list">
+        <div class="about-item">
+          <h3>فكرة الورشة</h3>
+          <p>ورشة عمل مقدمة من شركة أساس للتقنية، مصممة لمساعدة طلاب الجامعة على فهم المجال التقني بشكل عملي وواضح، بعيدًا عن التشتت الذي يواجهه أغلب الطلاب في بداية الطريق.</p>
+        </div>
+        <div class="about-item">
+          <h3>لماذا هذه الورشة؟</h3>
+          <p>كثير من الطلاب يقضون سنوات الجامعة دون رؤية واضحة لمسارهم التقني. هذه الورشة تضع أمامهم خطوطًا عريضة تساعدهم على فهم الخيارات المتاحة واتخاذ قرارات أقرب لاهتماماتهم.</p>
+        </div>
+        <div class="about-item">
+          <h3>ماذا سيستفيد المشارك؟</h3>
+          <p>فهم أوضح للمجالات التقنية المتاحة، ورؤية أقرب لمساره الخاص، واستعداد أفضل لخطواته القادمة نحو سوق العمل.</p>
+        </div>
+      </div>
+      <div class="pillars">
+        <span class="pillar-chip">استغلال سنوات الجامعة</span>
+        <span class="pillar-chip">المجالات التقنية</span>
+        <span class="pillar-chip">المسارات المهنية</span>
+        <span class="pillar-chip">تطوير الذات</span>
+        <span class="pillar-chip">سوق العمل</span>
+      </div>
+    </section>
+
+    <!-- ================= GOALS ================= -->
+    <section class="section">
+      <span class="eyebrow-label">أهداف الورشة</span>
+      <h2 class="section-title">ماذا ستحقق من حضورك؟</h2>
+      <div class="goals-path" id="goalsPath"></div>
+    </section>
+
+    <!-- ================= REGISTRATION ================= -->
+    <section class="section section-soft" id="registration-section">
+      <span class="eyebrow-label">التسجيل</span>
+      <h2 class="section-title">التسجيل في الورشة</h2>
+      <p class="section-lead">عبّئ بياناتك أدناه للتسجيل في الورشة. الحقول المميزة بعلامة <span class="req">*</span> إجبارية.</p>
+
+      <div class="reg-progress" aria-hidden="true">
+        <span class="seg active"></span><span class="seg active"></span><span class="seg active"></span><span class="seg active"></span><span class="seg active"></span>
+      </div>
+
+      <div class="form-alert" id="formAlert" role="alert">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>
+        <span id="formAlertText"></span>
+      </div>
+
+      <form id="registrationForm" novalidate>
+
+        <!-- Section 1: Personal info + Major -->
+        <div class="form-section">
+          <div class="form-section-head">
+            <span class="form-section-num">1</span>
+            <h3>المعلومات الشخصية</h3>
+          </div>
+
+          <div class="field">
+            <label for="f-name">الاسم <span class="req">*</span></label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>
+              <input type="text" id="f-name" name="name" autocomplete="name" placeholder="اكتب اسمك الكامل" aria-describedby="err-name" minlength="2" maxlength="100" required>
+            </div>
+            <div class="field-error" id="err-name"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg><span></span></div>
+          </div>
+
+          <div class="field">
+            <label for="f-email">البريد الإلكتروني</label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3 7l9 6 9-6"/></svg>
+              <input type="email" id="f-email" name="email" autocomplete="email" placeholder="example@email.com" aria-describedby="err-email">
+            </div>
+            <div class="field-error" id="err-email"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg><span></span></div>
+          </div>
+
+          <div class="field">
+            <label for="f-phone">رقم الهاتف (واتساب) <span class="req">*</span></label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.9.7 2.7a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.8 2z"/></svg>
+              <input type="tel" id="f-phone" name="phone" autocomplete="tel" placeholder="092 xxx xxxx" aria-describedby="err-phone hint-phone" minlength="7" maxlength="20" required>
+            </div>
+            <div class="hint" id="hint-phone">أدخل رقم هاتفك الليبي، مثال: 0921234567</div>
+            <div class="field-error" id="err-phone"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg><span></span></div>
+          </div>
+
+          <div class="field">
+            <label for="f-university">جهة الدراسة / الجامعة <span class="req">*</span></label>
+            <div class="input-wrap">
+              <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 9L12 5 2 9l10 4 10-4z"/><path d="M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/></svg>
+              <input type="text" id="f-university" name="university" autocomplete="organization" placeholder="مثال: جامعة الزاوية" aria-describedby="err-university" minlength="2" maxlength="150" required>
+            </div>
+            <div class="field-error" id="err-university"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg><span></span></div>
+          </div>
+
+          <div class="field">
+            <label for="f-major">التخصص</label>
+            <input type="text" id="f-major" name="major" placeholder="مثال: علوم حاسب" maxlength="100">
+          </div>
+        </div>
+
+        <!-- Section 2: Interests -->
+        <div class="form-section">
+          <div class="form-section-head">
+            <span class="form-section-num">2</span>
+            <h3>المجالات التقنية</h3>
+          </div>
+          <div class="field">
+            <label id="label-interests">ما المجالات التقنية التي تهمك؟ <span class="req">*</span></label>
+            <div class="check-grid" id="group-interests" role="group" aria-labelledby="label-interests" aria-describedby="err-interests"></div>
+            <div class="field-error" id="err-interests"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg><span></span></div>
+          </div>
+        </div>
+
+        <!-- Section 3: Experience -->
+        <div class="form-section">
+          <div class="form-section-head">
+            <span class="form-section-num">3</span>
+            <h3>الخبرة والمشاريع</h3>
+            <span class="opt-tag">اختياري</span>
+          </div>
+
+          <div class="field">
+            <label id="label-projects">ما أنواع المشاريع التي سبق لك العمل عليها؟</label>
+            <div class="check-grid" id="group-projects" role="group" aria-labelledby="label-projects"></div>
+          </div>
+        </div>
+
+        <!-- Section 4: Languages -->
+        <div class="form-section">
+          <div class="form-section-head">
+            <span class="form-section-num">4</span>
+            <h3>لغات البرمجة</h3>
+            <span class="opt-tag">اختياري</span>
+          </div>
+          <div class="field">
+            <label id="label-languages">ما لغات البرمجة التي لديك معرفة بها؟</label>
+            <div class="check-grid" id="group-languages" role="group" aria-labelledby="label-languages"></div>
+          </div>
+        </div>
+
+        <!-- Section 5: How did you hear -->
+        <div class="form-section">
+          <div class="form-section-head">
+            <span class="form-section-num">5</span>
+            <h3>معلومات التسجيل</h3>
+          </div>
+          <div class="field">
+            <label for="f-how">كيف تعرفت على الورشة؟ <span class="req">*</span></label>
+            <div class="select-wrap">
+              <select id="f-how" name="how_did_you_hear" required>
+                <option value="">اختر إجابة</option>
+              </select>
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+            </div>
+            <div class="field-error" id="err-how-did-you-hear"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg><span></span></div>
+          </div>
+        </div>
+
+        <div class="submit-zone">
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <span class="spinner" aria-hidden="true"></span>
+            <svg class="btn-submit-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <span class="btn-submit-label">إرسال التسجيل</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Success state -->
+      <div id="successState" class="hidden" role="status">
+        <div class="success-wrap">
+          <div class="success-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <h3>تم التسجيل بنجاح</h3>
+          <p>تم استلام بيانات تسجيلك بنجاح.</p>
+          <p class="success-sub">نتمنى لك تجربة مميزة في الورشة.</p>
+          <a href="#main-content" class="btn-ghost" id="backHomeBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+            العودة إلى الصفحة الرئيسية
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-brand">
+      <span class="brand-logo" aria-hidden="true"><img src="logo.jpg" alt="شعار أساس للتقنية"></span>
+      <span class="brand-text">
+        <span class="footer-name-ar">أساس للتقنية</span>
+        <span class="footer-name-en">ASAS TECHNOLOGY</span>
+      </span>
+    </div>
+    <div class="footer-links">
+      <a id="mapsBtnFooter" href="https://maps.app.goo.gl/xGmfpKbavvLKMVYM7?g_st=ic" target="_blank" rel="noopener noreferrer" class="footer-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11.3A7 7 0 0 1 19 9.7C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
+        موقع الشركة على الخريطة
+      </a>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <span>© 2026 أساس للتقنية. جميع الحقوق محفوظة.</span>
+      <span class="by-line">BY ASAS TECHNOLOGY</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   config/config.js
+   ============================================================ */
+const ENV = window.__ASAS_ENV__ || {};
+
+const CONFIG = {
+  API_BASE_URL: ENV.API_BASE_URL || "https://api.example.com",
+  GOOGLE_MAPS_URL: ENV.GOOGLE_MAPS_URL || "https://maps.app.goo.gl/xGmfpKbavvLKMVYM7?g_st=ic",
+  LOGO_URL: ENV.LOGO_URL || "",
+  WORKSHOP_DATE: ENV.WORKSHOP_DATE || null,
+  WORKSHOP_TIME: ENV.WORKSHOP_TIME || null,
+  WORKSHOP_DURATION: ENV.WORKSHOP_DURATION || null,
+  WORKSHOP_LOCATION: ENV.WORKSHOP_LOCATION || null,
+};
+const REGISTRATION_ENDPOINT = CONFIG.API_BASE_URL.replace(/\/$/, "") + "/api/registrations";
+
+
+/* ============================================================
+   constants/options.js
+   ============================================================ */
+const INTEREST_OPTIONS = [
+  { value: "Web Development", label: "تطوير الويب" },
+  { value: "Mobile App Development", label: "تطوير تطبيقات الجوال" },
+  { value: "Networking", label: "الشبكات" },
+  { value: "Artificial Intelligence", label: "الذكاء الاصطناعي" },
+];
+
+const PROJECT_OPTIONS = [
+  { value: "Frontend", label: "واجهات أمامية (Frontend)" },
+  { value: "Backend", label: "أنظمة خلفية (Backend)" },
+  { value: "AI", label: "ذكاء اصطناعي" },
+  { value: "Mobile Apps", label: "تطبيقات جوال" },
+  { value: "None", label: "لا شيء من ذلك", isExclusive: true },
+];
+
+const LANGUAGE_OPTIONS = [
+  { value: "HTML", label: "HTML" },
+  { value: "CSS", label: "CSS" },
+  { value: "JavaScript", label: "JavaScript" },
+  { value: "C", label: "C" },
+  { value: "C++", label: "C++" },
+  { value: "C#", label: "C#" },
+  { value: "Python", label: "Python" },
+  { value: "Java", label: "Java" },
+  { value: "PHP", label: "PHP" },
+  { value: "Dart", label: "Dart" },
+  { value: "None", label: "لا شيء من ذلك", isExclusive: true },
+];
+
+const HOW_DID_YOU_HEAR_OPTIONS = [
+  { value: "Facebook", label: "فيسبوك" },
+  { value: "WhatsApp", label: "واتساب" },
+  { value: "TikTok", label: "تيك توك" },
+  { value: "Friend", label: "صديق" },
+  { value: "University", label: "الجامعة" },
+  { value: "Company Website", label: "موقع الشركة" },
+  { value: "Other", label: "أخرى" },
+];
+
+const GOAL_ITEMS = [
+  { title: "استغلال سنوات الجامعة", desc: "توظيف سنوات الدراسة بالشكل الصحيح لبناء أساس تقني قوي.", icon: "cap" },
+  { title: "التعرف على المجالات التقنية", desc: "استكشاف أبرز المجالات التقنية المتاحة اليوم.", icon: "layers" },
+  { title: "فهم المسارات التقنية المختلفة", desc: "معرفة المسارات المتاحة وما يناسب اهتماماتك منها.", icon: "route" },
+  { title: "تطوير نفسك", desc: "اكتساب خطوات عملية للبدء في تطوير مهاراتك التقنية.", icon: "trend" },
+  { title: "بناء رؤية أوضح لمسارك التقني", desc: "الخروج برؤية أقرب لمسارك المهني القادم.", icon: "target" },
+  { title: "الاستعداد بشكل أفضل لسوق العمل", desc: "خطوات تقربك من دخول سوق العمل التقني بثقة أكبر.", icon: "brief" },
+];
+
+const ICONS = {
+  cap: '<path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/>',
+  layers: '<path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>',
+  route: '<circle cx="6" cy="19" r="2.5"/><circle cx="18" cy="5" r="2.5"/><path d="M8.2 17.5C13 15 11 9 15.8 6.5"/>',
+  trend: '<path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/>',
+  target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+  brief: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>',
+  calendar: '<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M16 3v4M8 3v4M3 10h18"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>',
+  hourglass: '<path d="M6 3h12M6 21h12M6 3c0 5 12 5 12 0-12-5 0 13 0 18"/>',
+  pin: '<path d="M12 21s-7-6.1-7-11.3A7 7 0 0 1 19 9.7C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/>',
+};
+
+function iconSvg(name){
+  return '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + (ICONS[name] || "") + '</svg>';
+}
+
+const FRIENDLY_MESSAGES = {
+  name: "يرجى إدخال اسم صحيح.",
+  email: "يرجى إدخال بريد إلكتروني صحيح.",
+  phone: "يرجى التأكد من رقم الهاتف.",
+  university: "يرجى إدخال جهة الدراسة بشكل صحيح.",
+  interests: "يرجى اختيار مجال تقني واحد على الأقل.",
+  major: "يرجى مراجعة حقل التخصص.",
+  quiz_projects: "لا يمكن اختيار \"لا شيء من ذلك\" مع خيارات أخرى.",
+  quiz_languages: "لا يمكن اختيار \"لا شيء من ذلك\" مع خيارات أخرى.",
+  how_did_you_hear: "يرجى اختيار كيف تعرفت على الورشة.",
+};
+
+
+/* ============================================================
+   validation/registrationValidation.js
+   ============================================================ */
+const PHONE_PATTERN = /^\+?[0-9 ()\-]{7,20}$/;
+
+function validateRegistration(data){
+  const errors = {};
+
+  const name = (data.name || "").trim();
+  if (!name) errors.name = "يرجى إدخال الاسم.";
+  else if (name.length < 2 || name.length > 100) errors.name = "الاسم يجب أن يكون بين 2 و100 حرف.";
+
+  const email = (data.email || "").trim();
+  if (email) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) errors.email = "يرجى إدخال بريد إلكتروني صحيح.";
+  }
+
+  const phone = (data.phone || "").trim();
+  if (!phone) errors.phone = "يرجى إدخال رقم الهاتف.";
+  else if (phone.length < 7 || phone.length > 20 || !PHONE_PATTERN.test(phone)) {
+    errors.phone = "يرجى التأكد من رقم الهاتف (بين 7 و20 حرفًا، أرقام فقط مع إمكانية +/-/() ).";
+  }
+
+  const university = (data.university || "").trim();
+  if (!university) errors.university = "يرجى إدخال جهة الدراسة / الجامعة.";
+  else if (university.length < 2 || university.length > 150) errors.university = "هذا الحقل يجب أن يكون بين 2 و150 حرف.";
+
+  if (!Array.isArray(data.interests) || data.interests.length === 0) {
+    errors.interests = "يرجى اختيار مجال تقني واحد على الأقل.";
+  } else {
+    const unique = new Set(data.interests);
+    if (unique.size !== data.interests.length) errors.interests = "لا يمكن تكرار نفس المجال.";
+  }
+
+  if (data.major && data.major.length > 100) errors.major = "التخصص يجب ألا يتجاوز 100 حرف.";
+
+  if (Array.isArray(data.quiz_projects) && data.quiz_projects.includes("None") && data.quiz_projects.length > 1) {
+    errors.quiz_projects = "لا يمكن اختيار \"لا شيء من ذلك\" مع خيارات أخرى.";
+  }
+  if (Array.isArray(data.quiz_languages) && data.quiz_languages.includes("None") && data.quiz_languages.length > 1) {
+    errors.quiz_languages = "لا يمكن اختيار \"لا شيء من ذلك\" مع خيارات أخرى.";
+  }
+
+  if (!data.how_did_you_hear) {
+    errors.how_did_you_hear = "يرجى اختيار كيف تعرفت على الورشة.";
+  }
+
+  return { valid: Object.keys(errors).length === 0, errors };
+}
+
+
+/* ============================================================
+   services/registrationService.js
+   ============================================================ */
+const registrationService = {
+  async submitRegistration(payload){
+    let response;
+    try {
+      response = await fetch(REGISTRATION_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch (networkErr) {
+      const err = new Error("network_error");
+      err.cause = networkErr;
+      throw err;
+    }
+
+    if (response.status === 422) {
+      let body = null;
+      try { body = await response.json(); } catch (e) { /* ignore parse errors */ }
+      const err = new Error("validation_error");
+      err.detail = body && body.detail ? body.detail : null;
+      throw err;
+    }
+
+    if (!response.ok) {
+      const err = new Error("server_error");
+      err.status = response.status;
+      throw err;
+    }
+
+    try { return await response.json(); } catch (e) { return null; }
+  }
+};
+
+
+/* ============================================================
+   sections rendering — workshop info / goals / checkbox groups
+   ============================================================ */
+function renderWorkshopInfo(){
+  const items = [
+    { key: "WORKSHOP_DATE", label: "التاريخ", icon: "calendar" },
+    { key: "WORKSHOP_TIME", label: "الوقت", icon: "clock" },
+    { key: "WORKSHOP_DURATION", label: "المدة", icon: "hourglass" },
+    { key: "WORKSHOP_LOCATION", label: "المكان", icon: "pin" },
+  ].filter(i => CONFIG[i.key]);
+
+  if (items.length === 0) return;
+
+  const grid = document.getElementById("workshopInfoGrid");
+  grid.innerHTML = items.map(i => `
+    <div class="info-card">
+      <span class="info-icon">${iconSvg(i.icon)}</span>
+      <div class="info-label">${i.label}</div>
+      <div class="info-value">${CONFIG[i.key]}</div>
+    </div>
+  `).join("");
+  document.getElementById("workshopInfoSection").style.display = "block";
+}
+
+function renderGoals(){
+  const wrap = document.getElementById("goalsPath");
+  wrap.innerHTML = GOAL_ITEMS.map(g => `
+    <div class="goal-row">
+      <span class="goal-connector" aria-hidden="true"></span>
+      <span class="goal-marker" aria-hidden="true">${iconSvg(g.icon)}</span>
+      <div class="goal-content">
+        <h3>${g.title}</h3>
+        <p>${g.desc}</p>
+      </div>
+    </div>
+  `).join("");
+}
+
+function renderCheckboxGroup(containerId, name, options){
+  const container = document.getElementById(containerId);
+  container.innerHTML = options.map((opt, idx) => {
+    const id = `${name}-${idx}`;
+    return `
+      <div class="check-item${opt.isExclusive ? " none-option" : ""}" data-value="${opt.value}">
+        <input type="checkbox" id="${id}" name="${name}" value="${opt.value}" ${opt.isExclusive ? 'data-exclusive="true"' : ''}>
+        <label for="${id}">${opt.label}</label>
+      </div>
+    `;
+  }).join("");
+
+  container.querySelectorAll("input[type=checkbox]").forEach(cb => {
+    cb.addEventListener("change", () => {
+      const item = cb.closest(".check-item");
+      item.classList.toggle("checked", cb.checked);
+
+      if (cb.checked) {
+        const isExclusive = cb.dataset.exclusive === "true";
+        const allBoxes = Array.from(container.querySelectorAll("input[type=checkbox]"));
+        if (isExclusive) {
+          allBoxes.forEach(other => {
+            if (other !== cb && other.checked) {
+              other.checked = false;
+              other.closest(".check-item").classList.remove("checked");
+            }
+          });
+        } else {
+          const exclusiveBox = allBoxes.find(o => o.dataset.exclusive === "true");
+          if (exclusiveBox && exclusiveBox.checked) {
+            exclusiveBox.checked = false;
+            exclusiveBox.closest(".check-item").classList.remove("checked");
+          }
+        }
+      }
+      if (name === "interests") clearFieldError("interests");
+    });
+  });
+}
+
+function renderSelectOptions(){
+  const select = document.getElementById("f-how");
+  HOW_DID_YOU_HEAR_OPTIONS.forEach(opt => {
+    const o = document.createElement("option");
+    o.value = opt.value;
+    o.textContent = opt.label;
+    select.appendChild(o);
+  });
+}
+
+function getCheckedValues(containerId){
+  return Array.from(document.querySelectorAll(`#${containerId} input[type=checkbox]:checked`)).map(el => el.value);
+}
+
+
+/* ============================================================
+   Form controller — collects data, validates, calls the service
+   ============================================================ */
+function clearFieldError(key){
+  const input = document.getElementById(`f-${key.replace(/_/g, "-")}`);
+  if (input) input.classList.remove("invalid");
+  const errEl = document.getElementById(`err-${key}`) || document.getElementById(`err-${key.replace(/_/g, "-")}`);
+  if (errEl) { errEl.classList.remove("show"); errEl.querySelector("span").textContent = ""; }
+}
+
+function showFieldError(key, message){
+  const input = document.getElementById(`f-${key.replace(/_/g, "-")}`);
+  if (input) input.classList.add("invalid");
+  const errEl = document.getElementById(`err-${key}`) || document.getElementById(`err-${key.replace(/_/g, "-")}`);
+  if (errEl) { errEl.classList.add("show"); errEl.querySelector("span").textContent = message; }
+}
+
+function clearAllErrors(){
+  ["name","email","phone","university","interests","major","quiz_projects","quiz_languages","how_did_you_hear"].forEach(clearFieldError);
+  hideFormAlert();
+}
+
+function showFormAlert(message){
+  const alertEl = document.getElementById("formAlert");
+  document.getElementById("formAlertText").textContent = message;
+  alertEl.classList.add("show");
+}
+function hideFormAlert(){
+  document.getElementById("formAlert").classList.remove("show");
+}
+
+function collectFormData(){
+  const form = document.getElementById("registrationForm");
+  const data = {
+    name: form.name.value.trim(),
+    phone: form.phone.value.trim(),
+    university: form.university.value.trim(),
+    interests: getCheckedValues("group-interests"),
+  };
+
+  const email = form.email.value.trim();
+  if (email) data.email = email;
+
+  const major = form.major.value.trim();
+  if (major) data.major = major;
+
+  const quizProjects = getCheckedValues("group-projects");
+  if (quizProjects.length) data.quiz_projects = quizProjects;
+
+  const quizLanguages = getCheckedValues("group-languages");
+  if (quizLanguages.length) data.quiz_languages = quizLanguages;
+
+  const howHeard = form.how_did_you_hear.value;
+  if (howHeard) data.how_did_you_hear = howHeard;
+
+  return data;
+}
+
+function mapBackendErrorToField(detail){
+  if (!Array.isArray(detail)) return null;
+  const fieldNames = ["name","email","phone","university","interests","major","quiz_projects","quiz_languages","how_did_you_hear"];
+  for (const d of detail) {
+    const loc = d.loc || [];
+    const field = loc.find(l => fieldNames.includes(l));
+    if (field) return field;
+  }
+  return null;
+}
+
+async function handleSubmit(e){
+  e.preventDefault();
+  clearAllErrors();
+
+  const submitBtn = document.getElementById("submitBtn");
+  if (submitBtn.classList.contains("loading")) return;
+
+  const data = collectFormData();
+  const { valid, errors } = validateRegistration(data);
+
+  if (!valid) {
+    Object.keys(errors).forEach(key => showFieldError(key, errors[key]));
+    const firstKey = Object.keys(errors)[0];
+    const firstEl = document.getElementById(`f-${firstKey.replace(/_/g, "-")}`) || document.getElementById("group-interests");
+    if (firstEl) firstEl.scrollIntoView({ behavior: "smooth", block: "center" });
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.classList.add("loading");
+  submitBtn.querySelector(".btn-submit-label").textContent = "جاري إرسال التسجيل...";
+
+  try {
+    await registrationService.submitRegistration(data);
+    showSuccessState();
+  } catch (err) {
+    if (err.message === "validation_error") {
+      const field = mapBackendErrorToField(err.detail);
+      if (field && FRIENDLY_MESSAGES[field]) {
+        showFieldError(field, FRIENDLY_MESSAGES[field]);
+        const el = document.getElementById(`f-${field.replace(/_/g, "-")}`);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+      } else {
+        showFormAlert("يرجى مراجعة البيانات المدخلة والمحاولة مرة أخرى.");
+      }
+      if (window.console) console.error("Registration validation error:", err.detail);
+    } else if (err.message === "network_error") {
+      showFormAlert("تعذر الاتصال بالخادم. يرجى التحقق من الاتصال بالإنترنت والمحاولة مرة أخرى.");
+      if (window.console) console.error("Network error:", err.cause);
+    } else {
+      showFormAlert("حدث خطأ أثناء إرسال التسجيل. يرجى المحاولة مرة أخرى.");
+      if (window.console) console.error("Unexpected registration error:", err);
+    }
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.classList.remove("loading");
+    submitBtn.querySelector(".btn-submit-label").textContent = "إرسال التسجيل";
+  }
+}
+
+function showSuccessState(){
+  document.getElementById("registrationForm").classList.add("hidden");
+  document.getElementById("successState").classList.remove("hidden");
+  document.querySelector(".reg-progress").style.display = "none";
+  document.getElementById("successState").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+
+/* ============================================================
+   Header / footer configuration (Google Maps link, logo)
+   ============================================================ */
+function applyHeaderFooterConfig(){
+  const mapsLinks = [document.getElementById("mapsBtnHeader"), document.getElementById("mapsBtnFooter")];
+  if (CONFIG.GOOGLE_MAPS_URL) {
+    mapsLinks.forEach(el => {
+      if (!el) return;
+      el.href = CONFIG.GOOGLE_MAPS_URL;
+      el.style.opacity = "1";
+      el.style.pointerEvents = "auto";
+      el.removeAttribute("aria-disabled");
+    });
+  }
+
+  if (CONFIG.LOGO_URL) {
+    document.querySelectorAll("#logoSlot, .footer-brand .brand-logo").forEach(slot => {
+      slot.innerHTML = `<img src="${CONFIG.LOGO_URL}" alt="شعار أساس للتقنية">`;
+    });
+  }
+}
+
+function bindSmoothScroll(){
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener("click", (e) => {
+      const targetId = link.getAttribute("href").slice(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
+}
+
+
+/* ============================================================
+   Init
+   ============================================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  renderWorkshopInfo();
+  renderGoals();
+  renderCheckboxGroup("group-interests", "interests", INTEREST_OPTIONS);
+  renderCheckboxGroup("group-projects", "quiz_projects", PROJECT_OPTIONS);
+  renderCheckboxGroup("group-languages", "quiz_languages", LANGUAGE_OPTIONS);
+  renderSelectOptions();
+  applyHeaderFooterConfig();
+  bindSmoothScroll();
+
+  document.getElementById("registrationForm").addEventListener("submit", handleSubmit);
+
+  ["name","email","phone","university","major"].forEach(key => {
+    const el = document.getElementById(`f-${key.replace(/_/g, "-")}`);
+    if (el) el.addEventListener("input", () => clearFieldError(key));
+  });
+
+  const howSelect = document.getElementById("f-how");
+  if (howSelect) howSelect.addEventListener("change", () => clearFieldError("how_did_you_hear"));
+});
+
+})();
+</script>
+</body>
+</html>
